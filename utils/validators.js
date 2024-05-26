@@ -32,6 +32,7 @@ export const registerValidator = [
 		.trim()
 		.isLength({ min: 8, max: 12 })
 		.withMessage("Enter valid matriculation/admission number!"),
+	body("level").notEmpty().withMessage("Academic level is required!"),
 	body("department").notEmpty().withMessage("Department is required!"),
 	body("faculty").notEmpty().withMessage("Faculty is required!"),
 	body("password").notEmpty().withMessage("Password is required!"),

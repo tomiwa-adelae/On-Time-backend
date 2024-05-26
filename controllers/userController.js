@@ -23,6 +23,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		name,
 		email,
 		matricNumber,
+		level,
 		phoneNumber,
 		department,
 		faculty,
@@ -51,6 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		matricNumber,
 		department,
 		faculty,
+		level,
 		phoneNumber,
 		password,
 	});
@@ -64,6 +66,7 @@ const registerUser = asyncHandler(async (req, res) => {
 			email: user.email,
 			matricNumber: user.matricNumber,
 			phoneNumber: user.phoneNumber,
+			level: user.level,
 			department: user.department,
 			faculty: user.faculty,
 			image: user.image,
@@ -98,6 +101,7 @@ const registerLecturer = asyncHandler(async (req, res) => {
 		faculty,
 		phoneNumber,
 		password,
+		level,
 		isLecturer: true,
 	});
 
@@ -110,6 +114,7 @@ const registerLecturer = asyncHandler(async (req, res) => {
 			email: user.email,
 			matricNumber: user.matricNumber,
 			phoneNumber: user.phoneNumber,
+			level: user.level,
 			department: user.department,
 			faculty: user.faculty,
 			image: user.image,
@@ -138,6 +143,7 @@ const loginUser = asyncHandler(async (req, res) => {
 			email: user.email,
 			matricNumber: user.matricNumber,
 			phoneNumber: user.phoneNumber,
+			level: user.level,
 			department: user.department,
 			faculty: user.faculty,
 			image: user.image,
@@ -162,6 +168,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 		user.matricNumber = req.body.matricNumber || user.matricNumber;
 		user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
 		user.department = req.body.department || user.department;
+		user.level = req.body.level || user.level;
 		user.faculty = req.body.faculty || user.faculty;
 		user.image = user.image;
 
@@ -175,6 +182,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 			matricNumber: updatedUser.matricNumber,
 			phoneNumber: updatedUser.phoneNumber,
 			department: updatedUser.department,
+			level: updatedUser.level,
 			faculty: updatedUser.faculty,
 			image: updatedUser.image,
 			isLecturer: updatedUser.isLecturer,
@@ -396,6 +404,7 @@ const uploadProfileImage = asyncHandler(async (req, res) => {
 				email: updatedUser.email,
 				matricNumber: updatedUser.matricNumber,
 				phoneNumber: updatedUser.phoneNumber,
+				level: updatedUser.level,
 				department: updatedUser.department,
 				faculty: updatedUser.faculty,
 				image: updatedUser.image,
@@ -420,6 +429,7 @@ const uploadProfileImage = asyncHandler(async (req, res) => {
 				email: updatedUser.email,
 				matricNumber: updatedUser.matricNumber,
 				phoneNumber: updatedUser.phoneNumber,
+				level: updatedUser.level,
 				department: updatedUser.department,
 				faculty: updatedUser.faculty,
 				image: updatedUser.image,
