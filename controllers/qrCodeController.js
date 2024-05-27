@@ -7,7 +7,7 @@ import QrCode from "../models/qrCodeModel.js";
 import Attendance from "../models/attendanceModel.js";
 
 // @desc    Generate QR Code by lecturers
-// @route   GET /api/qrcode/generate/:id
+// @route   POST /api/qrcode/generate/:id
 // @access  Public
 const generateQRCode = asyncHandler(async (req, res) => {
 	const { date } = req.body;
@@ -42,4 +42,19 @@ const generateQRCode = asyncHandler(async (req, res) => {
 	}
 });
 
-export { generateQRCode };
+// @desc    Get QR Code by lecturers
+// @route   GET /api/qrcode/generate/:id
+// @access  Private
+const getQRCode = asyncHandler(async (req, res) => {
+	const qrCode = await QrCode.findOne({ id: req.params.id });
+
+	if (qrCode) {
+		res.status(200).json(qrCode);
+	} else {
+		res.status(200).json({
+			message: "The QRCode is invalid! Generate a new one.",
+		});
+	}
+});
+
+export { generateQRCode, getQRCode };

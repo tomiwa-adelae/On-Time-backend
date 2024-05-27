@@ -88,6 +88,22 @@ const addCourseByStudent = asyncHandler(async (req, res) => {
 	}
 });
 
+// @desc    Fetch a course details by students
+// @route   GET /api/courses/students/:id
+// @access  Private
+const getCourseById = asyncHandler(async (req, res) => {
+	const course = await Course.findOne({
+		_id: req.params.id,
+	}).populate("user");
+
+	if (course) {
+		res.status(200).json(course);
+	} else {
+		res.status(404);
+		throw new Error("Internal error occurred!");
+	}
+});
+
 // @desc    Fetch all course the lecturer is taking by lecturers
 // @route   GET /api/courses/lecturers
 // @access  Private
@@ -187,4 +203,5 @@ export {
 	getCoursesByLecturer,
 	createCourseByLecturer,
 	getLecturerCourseById,
+	getCourseById,
 };

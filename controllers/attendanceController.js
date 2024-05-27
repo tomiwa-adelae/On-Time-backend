@@ -12,7 +12,9 @@ const markStudentAsAttended = asyncHandler(async (req, res) => {
 
 	const attendance = await Attendance.findOne({
 		course: id,
-	});
+	})
+		.populate("course")
+		.populate("user");
 
 	if (attendance) {
 		const classEntry = attendance.classes.find(
@@ -35,8 +37,10 @@ const markStudentAsAttended = asyncHandler(async (req, res) => {
 		) {
 			attendeesArray.unshift({ student: req.user._id });
 		} else {
-			res.status(400);
-			throw new Error("You have already been marked as attended!");
+			res.status(200).json({
+				message: "You have already been marked as attended!",
+				attendance,
+			});
 		}
 
 		await attendance.save();

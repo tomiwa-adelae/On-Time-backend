@@ -7,6 +7,7 @@ import {
 	getCoursesByLecturer,
 	createCourseByLecturer,
 	getLecturerCourseById,
+	getCourseById,
 } from "../controllers/courseController.js";
 import { lecturer, protect } from "../middleware/authMiddleware.js";
 import { courseValidator, validate } from "../utils/validators.js";
@@ -19,6 +20,7 @@ router
 	.get(protect, getAllCoursesByStudent)
 	.post(protect, addCourseByStudent);
 router.route("/students/mine").get(protect, getStudentCourses);
+router.route("/students/:id").get(protect, getCourseById);
 
 // Lecturer routes
 router
