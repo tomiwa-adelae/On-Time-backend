@@ -27,7 +27,7 @@ const router = express.Router();
 
 router.route("/").post(validate(registerValidator), registerUser);
 router.route("/lecturer").post(registerLecturer);
-router.route("/:id");
+// router.route("/:id");
 router.route("/auth").post(validate(loginValidator), loginUser);
 router.route("/profile").put(protect, updateUserProfile);
 router

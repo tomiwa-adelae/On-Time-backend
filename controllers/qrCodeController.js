@@ -22,8 +22,11 @@ const generateQRCode = asyncHandler(async (req, res) => {
 
 		await attendance.save();
 
+		// const newQrCode = await QRCode.toDataURL(
+		// 	`${process.env.BASE_URL}/api/attendance/${req.params.id}/mark-as-attended/${date}`
+		// );
 		const newQrCode = await QRCode.toDataURL(
-			`${process.env.BASE_URL}/api/attendance/${req.params.id}/mark-as-attended/${date}`
+			`${process.env.CLIENT_URL}/markattendance?id=${req.params.id}&date=${date}`
 		);
 
 		await QrCode.create({

@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import asyncHandler from "../middleware/asyncHandler.js";
 import Attendance from "../models/attendanceModel.js";
 import StudentAttendance from "../models/studentAttendanceModel.js";
@@ -53,6 +54,31 @@ const markStudentAsAttended = asyncHandler(async (req, res) => {
 	}
 });
 
+// @desc    Fetch all classes date for a course by a lecturer
+// @route   GET /api/attendance/:id/class/dates
+// @access  Private
+const getClassDatesPerCourse = asyncHandler(async (req, res) => {
+	const attendance = await Attendance.findOne({
+		user: req.user._id,
+		course: req.params.id,
+	});
+
+	if (!attendance) {
+		res.status(400);
+		throw new Error("No attendance record found.");
+	}
+
+	const classDates = [];
+
+	attendance.classes.forEach((classItem) => {
+		const date = classItem.classPerDay.date;
+
+		classDates.unshift(date);
+	});
+
+	res.status(200).json(classDates);
+});
+
 // @desc    Fetch all attendees per course by a lecturer
 // @route   GET /api/attendance/:id/:date
 // @access  Private
@@ -104,4 +130,5 @@ export {
 	markStudentAsAttended,
 	getAttendeesPerCourse,
 	getAttendeesPerCourseByStudent,
+	getClassDatesPerCourse,
 };
