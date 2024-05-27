@@ -121,6 +121,7 @@ const getAttendeesPerCourseByStudent = asyncHandler(async (req, res) => {
 		course: req.params.id,
 	}).populate({
 		path: "course",
+		populate: { path: "user" },
 	});
 
 	res.status(200).json(attendance);
