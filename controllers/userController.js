@@ -101,7 +101,7 @@ const registerLecturer = asyncHandler(async (req, res) => {
 		faculty,
 		phoneNumber,
 		password,
-		level,
+		level: uuidv4(),
 		isLecturer: true,
 	});
 
