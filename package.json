@@ -4,7 +4,6 @@
 	"description": "An online shop for courses",
 	"type": "module",
 	"scripts": {
-		"build": "npx tsc",
 		"start": "node server.js",
 		"server": "nodemon server.js"
 	},
